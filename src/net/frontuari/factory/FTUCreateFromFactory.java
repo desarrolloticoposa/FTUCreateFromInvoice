@@ -5,7 +5,7 @@ import org.compiere.grid.ICreateFromFactory;
 import org.compiere.model.GridTab;
 import org.compiere.model.I_C_Invoice;
 
-import net.frontuari.webui.apps.form.WFTUCreateFromInvoiceUI;
+import net.frontuari.webui.apps.form.WCreateFromInvoiceUI;
 /**
  * 
  * @author Carlos Vargas cvargas@frontuari.net
@@ -17,7 +17,7 @@ public class FTUCreateFromFactory implements ICreateFromFactory {
 	{
 		String tableName = mTab.getTableName();
 		if (tableName.equals(I_C_Invoice.Table_Name))
-			return new WFTUCreateFromInvoiceUI(mTab);
+			return new WCreateFromInvoiceUI(mTab);
 		
 		return null;
 	}

@@ -66,11 +66,11 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Space;
 
-public class WFTUCreateFromInvoiceUI extends CreateFrom implements EventListener<Event>, ValueChangeListener
+public class WCreateFromInvoiceUI extends CreateFrom implements EventListener<Event>, ValueChangeListener
 {
 	private WCreateFromWindow window;
 	
-	public WFTUCreateFromInvoiceUI(GridTab tab) 
+	public WCreateFromInvoiceUI(GridTab tab) 
 	{
 		super(tab);
 		log.info(getGridTab().toString());
@@ -98,7 +98,7 @@ public class WFTUCreateFromInvoiceUI extends CreateFrom implements EventListener
 	private int p_WindowNo;
 
 	/**	Logger			*/
-	private static final CLogger log = CLogger.getCLogger(WFTUCreateFromInvoiceUI.class);
+	private static final CLogger log = CLogger.getCLogger(WCreateFromInvoiceUI.class);
 		
 	protected Label bPartnerLabel = new Label();
 	protected WEditor bPartnerField;
@@ -874,6 +874,7 @@ public class WFTUCreateFromInvoiceUI extends CreateFrom implements EventListener
 				MInvoiceLine invoiceLine = new MInvoiceLine (invoice);
 				invoiceLine.setM_Product_ID(M_Product_ID, C_UOM_ID);	//	Line UOM
 				invoiceLine.setQty(QtyEntered);							//	Invoiced/Entered
+				
 				BigDecimal QtyInvoiced = null;
 				if (M_Product_ID > 0 && product.getC_UOM_ID() != C_UOM_ID) {
 					QtyInvoiced = MUOMConversion.convertProductFrom(Env.getCtx(), M_Product_ID, C_UOM_ID, QtyEntered);
@@ -890,6 +891,22 @@ public class WFTUCreateFromInvoiceUI extends CreateFrom implements EventListener
 				MRMALine rmaLine = null;
 				if (M_RMALine_ID > 0)
 					rmaLine = new MRMALine (Env.getCtx(), M_RMALine_ID, null);
+				
+				//ADD by Carlos Vargas
+				//ADD the activity and const center field value
+				if(orderLine.getC_Activity_ID() != 0) {
+					invoiceLine.setC_Activity_ID(orderLine.getC_Activity_ID());
+				}else {
+					invoiceLine.setC_Activity_ID(rmaLine.getC_Activity_ID());
+				}
+				
+				if(orderLine.getUser1_ID() != 0) {
+					invoiceLine.setUser1_ID(orderLine.getUser1_ID());
+				}else {
+					invoiceLine.setUser1_ID(rmaLine.getUser1_ID());
+				}
+				
+				
 				//
 				MInOutLine inoutLine = null;
 				if (M_InOutLine_ID != 0)
@@ -1048,6 +1065,6 @@ public class WFTUCreateFromInvoiceUI extends CreateFrom implements EventListener
 	@Override
 	public Object getWindow() {
 		// TODO Auto-generated method stub
-		return null;
+		return window;
 	}
 }
