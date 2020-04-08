@@ -1,4 +1,4 @@
-package net.frontuari.webui.apps.form;
+package net.frontuari.ftucfi.webui.apps.form;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -127,7 +127,7 @@ public class WCreateFromInvoiceUI extends CreateFrom implements EventListener<Ev
 	{
 		log.config("");
 		
-		window.setTitle(getTitle());
+		window.setTitle(Msg.getElement(Env.getCtx(), "CreateFrom"));
 
 		// RMA Selection option should only be available for AP Credit Memo
 		Integer docTypeId = (Integer)getGridTab().getValue("C_DocTypeTarget_ID");
@@ -893,7 +893,7 @@ public class WCreateFromInvoiceUI extends CreateFrom implements EventListener<Ev
 					rmaLine = new MRMALine (Env.getCtx(), M_RMALine_ID, null);
 				
 				//ADD by Carlos Vargas
-				//ADD the activity and const center field value
+				//ADD the activity and cost center field value
 				if(orderLine.getC_Activity_ID() != 0) {
 					invoiceLine.setC_Activity_ID(orderLine.getC_Activity_ID());
 				}else {

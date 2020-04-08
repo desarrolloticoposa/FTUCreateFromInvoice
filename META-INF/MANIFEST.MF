@@ -14,6 +14,6 @@ Require-Bundle: org.adempiere.base;bundle-version="7.1.0",
 Bundle-Activator: org.adempiere.plugin.utils.AdempiereActivator
 Bundle-Vendor: Frontuari, C.A
 Bundle-ActivationPolicy: lazy
-Service-Component: OSGI-INF/FTUCreateFromFactory.xml
-Export-Package: net.frontuari.factory,
- net.frontuari.webui.apps.form
+Service-Component: OSGI-INF/FTUCreateFromInvoiceFactory.xml
+Export-Package: net.frontuari.ftucfi.factory,
+ net.frontuari.ftucfi.webui.apps.form

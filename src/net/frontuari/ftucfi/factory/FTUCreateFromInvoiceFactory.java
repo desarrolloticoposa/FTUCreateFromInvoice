@@ -1,17 +1,17 @@
-package net.frontuari.factory;
+package net.frontuari.ftucfi.factory;
 
 import org.compiere.grid.ICreateFrom;
 import org.compiere.grid.ICreateFromFactory;
 import org.compiere.model.GridTab;
 import org.compiere.model.I_C_Invoice;
 
-import net.frontuari.webui.apps.form.WCreateFromInvoiceUI;
+import net.frontuari.ftucfi.webui.apps.form.WCreateFromInvoiceUI;
 /**
  * 
  * @author Carlos Vargas cvargas@frontuari.net
  *
  */
-public class FTUCreateFromFactory implements ICreateFromFactory {
+public class FTUCreateFromInvoiceFactory implements ICreateFromFactory {
 	@Override
 	public ICreateFrom create(GridTab mTab) 
 	{
